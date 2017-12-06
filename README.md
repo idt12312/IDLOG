@@ -130,7 +130,7 @@ uint32_t log_timestamp_tick()
 
 
 # 使い方
-具体的な例は以下のものや、exampleディレクトリのコードも参考にしてください。
+具体的な例は以下のものや、[exampleディレクトリのコード](https://github.com/idt12312/IDLOG/tree/master/example)も参考にしてください。
 
 ## 使用例
 ```c
