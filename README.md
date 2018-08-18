@@ -2,7 +2,7 @@
 マイコンなどで簡単にログを出力するためのライブラリ
 
 
-# 使用例
+## 使用例
 ソースコード中にこのようなコードを書きます。
 
 ```c
@@ -47,7 +47,7 @@ void module1_proc()
 ※1001や1002といった数字はタイムスタンプを意味しています。
 
 
-## 特徴1:便利な表示機能
+### 特徴1:便利な表示機能
 次の3つの形式でログを表示することができます。
 
 * printfのようなフォーマット付き文字列の表示
@@ -55,7 +55,7 @@ void module1_proc()
 * 関数に入った、出たの表示
 
 
-## 特徴2:モジュール名を表示可能
+### 特徴2:モジュール名を表示可能
 そのログがどのモジュール(ファイル)から出力されたものなのかを知ることができます。
 
 例えばログを"module1"というモジュールから出力されたと表示するには、
@@ -76,7 +76,7 @@ IDLOG_ERROR("error message");
 ```
 
 
-## 特徴3:ログの出力レベルを設定可能
+### 特徴3:ログの出力レベルを設定可能
 モジュールごとに出力するログのレベルをファイルごとに設定することができます。
 ログのレベルにはERROR WARNING INFO DEBUGがあります。
 
@@ -103,7 +103,7 @@ IDLOG_DEBUG("debug message");
 [:WRN] warning message
 ```
 
-## 特徴4:出力関数、タイムスタンプ関数を設定可能
+### 特徴4:出力関数、タイムスタンプ関数を設定可能
 IDLOGの初期化時にログを出力する先の関数と、タイムスタンプを取得する関数を設定することができます。
 
 例えばマイコンのプロジェクトにおいて次のような出力関数をIDLOGに設定すると、
@@ -129,10 +129,10 @@ uint32_t log_timestamp_tick()
 ```
 
 
-# 使い方
+## 使い方
 具体的な例は以下のものや、[exampleディレクトリのコード](https://github.com/idt12312/IDLOG/tree/master/example)も参考にしてください。
 
-## 使用例
+### 使用例
 ```c
 #include <stdio.h>
 
@@ -190,10 +190,10 @@ int main()
 }
 ```
 
-## インストール方法
+### インストール方法
 IDLOGを使用したいプロジェクトにidlog.cとidlog.hを含めてビルドするだけです。
 
-## idlog.hの設定
+### idlog.hの設定
 基本的にはいじらなくてもいいような気がしますが、用途に合わせて次の設定を適宜修正してください
 
 #### IDLOG_BUFFER_SIZE
@@ -209,7 +209,7 @@ IDLOGを使用したいプロジェクトにidlog.cとidlog.hを含めてビル�
 明示的にどのログレベルまで表示するのかが設定されなかったときのデフォルト値です。
 
 
-## idlog.hをincludeしたファイルでの設定
+### idlog.hをincludeしたファイルでの設定
 次のマクロを**idlog.hをincludeするよりも上の行で**定義してください。
 これらの設定はそのファイル内のみで有効です。
 
@@ -232,7 +232,7 @@ IDLOG_LEVEL_ERROR、IDLOG_LEVEL_WARNING、IDLOG_LEVEL_INFO、IDLOG_LEVEL_DEBUG�
 定義しないとidlog.hにあるデフォルト値が使われます。
 
 
-## IDLOGの初期化関数
+### IDLOGの初期化関数
 
 ```c
 void idlog_internal_init(const idlog_output_func_t _output_func, const idlog_timestamp_func_t _timestamp_func);
@@ -255,10 +255,10 @@ typedef uint32_t (*idlog_timestamp_func_t)();
 ログの出力関数の設定は必須ですが、タイムスタンプを取得する関数はNULLを設定することもできます。
 その場合、タイムスタンプが表示されなくなります。
 
-## ログの出力API
+### ログの出力API
 以下の説明でのLEVELはERROR、WARNING、INFO、DEBUGに置き換えて使用してください。
 
-### フォーマットされた文字列を表示
+#### フォーマットされた文字列を表示
 
 ```c
 void IDLOG_LEVEL(const char* fmt, ...);
@@ -268,7 +268,7 @@ void IDLOG_LEVEL(const char* fmt, ...);
 引数はprintfと同じ感じです。
 
 
-### バイナリデータの16進数ダンプ
+#### バイナリデータの16進数ダンプ
 
 ```c
 void IDLOG_LEVEL_HEXDUMP(const uint8_t* data, size_t len);
@@ -277,7 +277,7 @@ void IDLOG_LEVEL_HEXDUMP(const uint8_t* data, size_t len);
 ログレベルLEVELで長さlenのバイトデータdataを16進数表示します。
 dataはuint8_t*で渡してください。
 
-### 関数の入出表示
+#### 関数の入出表示
 
 ```c
 void IDLOG_LEVEL_FUNCTION_ENTER();
